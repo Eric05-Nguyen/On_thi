@@ -1,0 +1,64 @@
+package assignment15;
+
+import java.util.*;
+import java.text.*;
+
+public class Student extends Person {
+
+    private float gpa;
+    private String major;
+    Scanner nhap = new Scanner(System.in);
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+    public Student() {
+    }
+
+    public Student(String id, String fullName, Date dateOfBirth, Date bookBorrowDate, Date bookReturnDate, float gpa, String major) {
+        super(id, fullName, dateOfBirth, bookBorrowDate, bookReturnDate);
+        this.gpa = gpa;
+        this.major = major;
+    }
+
+    public float getGpa() {
+        return gpa;
+    }
+
+    public void setGpa(float gpa) {
+        this.gpa = gpa;
+    }
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    @Override
+    public void addPerson() {
+        super.addPerson();
+        System.out.println("Nhap diem gpa :");
+        gpa = nhap.nextFloat();
+        nhap.nextLine();
+        System.out.println("Nhap chuyen nganh:");
+        major = nhap.nextLine();
+
+    }
+
+    @Override
+    public void updatePerson(String id) {
+        super.updatePerson(id);
+        System.out.println("Nhap gpa moi :");
+        major = nhap.nextLine();
+        System.out.println("Nhap chuyen nganh moi:");
+        major = nhap.nextLine();
+    }
+
+    @Override
+    public void displayInfo() {
+        super.displayInfo();
+        System.out.println("gpa :" + gpa);
+        System.out.println("Chuyen nganh:" + major);
+    }
+}
