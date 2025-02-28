@@ -1,0 +1,59 @@
+package assignment15;
+
+import java.util.*;
+import java.text.*;
+
+public class Teacher extends Person {
+
+    private String department;
+    private String teachingSubject;
+
+    public Teacher() {
+
+    }
+
+    public Teacher(String id, String fullName, Date dateOfBirth, Date bookBorrowDate, Date bookReturnDate, String department, String teachingSubject) {
+        super(id, fullName, dateOfBirth, bookBorrowDate, bookReturnDate);
+        this.department = department;
+        this.teachingSubject = teachingSubject;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public String getTeachingSubject() {
+        return teachingSubject;
+    }
+
+    public void setTeachingSubject(String teachingSubject) {
+        this.teachingSubject = teachingSubject;
+    }
+
+    @Override
+    public void addPerson() {
+        super.addPerson();
+        System.out.println("Nhap khoa giang day:");
+        department = nhap.nextLine();
+        System.out.println("Nhap mon hoc giang day :");
+        teachingSubject = nhap.nextLine();
+    }
+ @Override
+    public void updatePerson(String id) {
+        super.updatePerson(id);
+        System.out.println("Nhap khoa giang day moi :");
+        department= nhap.nextLine();
+        System.out.println("Nhap mon hoc moi:");
+        teachingSubject=nhap.nextLine();
+    }
+    @Override
+    public void displayInfo() {
+        super.displayInfo();
+        System.out.println("Department:" + department);
+        System.out.println("teachingSubject:"+teachingSubject);
+    }
+}
