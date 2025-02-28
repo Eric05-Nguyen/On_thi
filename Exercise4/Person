@@ -1,0 +1,161 @@
+package assignment15;
+
+import java.util.*;
+import java.text.*;
+
+abstract class Person implements IPerson {
+
+    private String id;
+    private String fullName;
+    private Date dateOfBirth;
+    private Date bookBorrowDate;
+    private Date bookReturnDate;
+    Scanner nhap = new Scanner(System.in);
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+    public Person() {
+    }
+
+    public Person(String id, String fullName, Date dateOfBirth, Date bookBorrowDate, Date bookReturnDate) {
+        this.id = id;
+        this.fullName = fullName;
+        this.dateOfBirth = dateOfBirth;
+        this.bookBorrowDate = bookBorrowDate;
+        this.bookReturnDate = bookReturnDate;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public Date getBooBorrowDate() {
+        return bookBorrowDate;
+    }
+
+    public void setBooBorrowDate(Date booBorrowDate) {
+        this.bookBorrowDate = booBorrowDate;
+    }
+
+    public Date getBookReturnDate() {
+        return bookReturnDate;
+    }
+
+    public void setBookReturnDate(Date bookReturnDate) {
+        this.bookReturnDate = bookReturnDate;
+    }
+
+    public void addPerson() {
+
+        System.out.println("nhap id:");
+        id = nhap.nextLine();
+        System.out.println("Nhap day du ho ten :");
+        fullName = nhap.nextLine();
+        dateOfBirth = null;
+        while (dateOfBirth == null) {
+            try {
+                System.out.println("Nhap ngay theo dinh dang(dd/MM/yyyy):");
+                String input1 = nhap.nextLine();
+                dateOfBirth = sdf.parse(input1);
+            } catch (Exception e) {
+                System.out.println("Noi dung khong dung dinh dang.NHAP LAI!!!");
+            }
+        }
+        bookBorrowDate = null;
+        while (bookBorrowDate == null) {
+            try {
+                System.out.println("Nhap ngay theo dinh dang(dd/MM/yyyy):");
+                String input2 = nhap.nextLine();
+                bookBorrowDate = sdf.parse(input2);
+            } catch (Exception e) {
+                System.out.println("Noi dung khong dung dinh dang.NHAP LAI!!!");
+            }
+        }
+        bookReturnDate = null;
+        while (bookReturnDate == null) {
+            try {
+                System.out.println("Nhap ngay theo dinh dang(dd/MM/yyyy):");
+                String input3 = nhap.nextLine();
+                bookReturnDate = sdf.parse(input3);
+            } catch (Exception e) {
+                System.out.println("Noi dung khong dung dinh dang.NHAP LAI!!!");
+            }
+        }
+    }
+
+    public void updatePerson(String id) {
+        System.out.println("Nhap day du ho ten muon thay the :");
+        fullName = nhap.nextLine();
+        dateOfBirth = null;
+        while (dateOfBirth == null) {
+            try {
+                System.out.println("Nhap ngay sinh dinh dang(dd/MM/yyyy):");
+                String input1 = nhap.nextLine();
+                dateOfBirth = sdf.parse(input1);
+            } catch (Exception e) {
+                System.out.println("Noi dung khong dung dinh dang.NHAP LAI!!!");
+            }
+        }
+        bookBorrowDate = null;
+        while (bookBorrowDate == null) {
+            try {
+                System.out.println("Nhap ngay muon theo dinh dang(dd/MM/yyyy):");
+                String input2 = nhap.nextLine();
+                bookBorrowDate = sdf.parse(input2);
+            } catch (Exception e) {
+                System.out.println("Noi dung khong dung dinh dang.NHAP LAI!!!");
+            }
+        }
+        bookReturnDate = null;
+        while (bookReturnDate == null) {
+            try {
+                System.out.println("Nhap ngay tra theo dinh dang(dd/MM/yyyy):");
+                String input3 = nhap.nextLine();
+                bookReturnDate = sdf.parse(input3);
+            } catch (Exception e) {
+                System.out.println("Noi dung khong dung dinh dang.NHAP LAI!!!");
+            }
+        }
+        System.out.println("Cap nhat thanh cong");
+    }
+
+    public void displayInfo() {
+        System.out.println("--------------------------------------");
+        System.out.println("ID:" + id);
+        System.out.println("fullName:" + fullName);
+        System.out.println("Date of Birth:" + sdf.format(dateOfBirth));
+        System.out.println("Borrow date:" + bookBorrowDate);
+        System.out.println("Return date:" + bookReturnDate);
+    }
+
+    public boolean isBookOverdue() {
+        long borrow = bookBorrowDate.getTime();
+        long Return = bookReturnDate.getTime();
+        long kq1 = Return - borrow;
+        long kq2 = kq1 / (1000 * 3600 * 24);
+        if (kq2 >= 30) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
