@@ -1,0 +1,79 @@
+package assignment15;
+
+import java.util.*;
+import java.text.*;
+
+public class Processor {
+
+    public static void main(String[] args) {
+        Scanner nhap = new Scanner(System.in);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        PersonList personList = new PersonList();
+        int choice;
+        do {
+            System.out.println("MENU");
+            System.out.println("0.Exit");
+            System.out.println("1.Add studen");
+            System.out.println("2.Add teacher");
+            System.out.println("3.Update person by id");
+            System.out.println("4.Delete person by id");
+            System.out.println("5.In thong tin");
+            System.out.println("6.Find the student with hightest GPA");
+            System.out.println("7.Find teachers by department");
+            System.out.println("8. Kiem tra sach qua ngay han hay chua");
+            System.out.println("Lua chon:");
+            choice = nhap.nextInt();
+            nhap.nextLine();
+            switch (choice) {
+                case 1:
+                    Student student = new Student();
+                    personList.addPerson(student);
+                    break;
+                case 2:
+                    Teacher teacher = new Teacher();
+                    personList.addPerson(teacher);
+                    break;
+                case 3:
+                    System.out.println("------------------------------");
+                    System.out.println("Nhap id  nguoi muon thay doi:");
+                    String idToUpdate = nhap.nextLine();
+                    personList.updatePerson(idToUpdate);
+                    break;
+                case 4:
+                    System.out.println("------------------------------");
+
+                    System.out.println("Nhap id nguoi muon xoa:");
+                    String idToDelete = nhap.nextLine();
+                    personList.deletePersonById(idToDelete);
+                    break;
+                case 5:
+                    System.out.println("------------------------------");
+
+                    System.out.println("IN toan bo thong tin :");
+                    personList.displayEveryone();
+                    break;
+                case 6:
+                    System.out.println("------------------------------");
+
+                    System.out.println("Nguoi co gpa cao nhat la :");
+                    Student timKiem = personList.findTopStudent();
+                    if (timKiem != null) {
+                        timKiem.displayInfo();
+                    } else {
+                        System.out.println("K co");
+                    }
+                    break;
+                case 7:
+                    System.out.println("------------------------------");
+
+                    System.out.println("Nhap department :");
+                    personList.findTeacherByDepartment(nhap.nextLine());
+                    break;
+                case 8:
+                    personList.checkBookBorrowing();
+                    break;
+            }
+
+        } while (choice != 0);
+    }
+}
